@@ -11,7 +11,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.Model
         IngredientData ingredientData = new IngredientData();
 
         /// <summary>
-        /// List of pizza
+        /// List of pizza ingredients
         /// </summary>
         private string ingredientList;
         public string IngredientList

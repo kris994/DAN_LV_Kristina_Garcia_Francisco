@@ -6,15 +6,17 @@ using Nedeljni_II_Kristina_Garcia_Francisco.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
 {
+    /// <summary>
+    ///  Add pizza vie modwl
+    /// </summary>
     class AddPizzaViewModel : ViewModelBase
     {
+        #region Variables
         readonly AddPizzaWindow addPizzaWindow;
         PizzaData pizzaData = new PizzaData();
         IngredientData ingredientData = new IngredientData();
@@ -24,6 +26,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
         /// Ingredient List
         /// </summary>
         private readonly List<string> ingredientList = new List<string> { "Salama", "Ham", "Kulen", "Ketchup", "Majo", "Chilli Papper", "Olive", "Oregano", "Sesame", "Cheese" };
+        #endregion
 
         #region Constructor
         /// <summary>

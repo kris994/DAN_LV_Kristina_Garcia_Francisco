@@ -8,6 +8,9 @@ namespace DAN_LV_Kristina_Garcia_Francisco.View
     /// </summary>
     public partial class AllPizzaWindow : Window
     {
+        /// <summary>
+        /// All pizzas
+        /// </summary>
         public AllPizzaWindow()
         {
             InitializeComponent();

@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace DAN_LV_Kristina_Garcia_Francisco.DataAccess
 {
+    /// <summary>
+    /// Pizza crid operations
+    /// </summary>
     class PizzaData
     {
         /// <summary>

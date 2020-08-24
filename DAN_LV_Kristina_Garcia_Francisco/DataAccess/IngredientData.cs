@@ -63,6 +63,10 @@ namespace DAN_LV_Kristina_Garcia_Francisco.DataAccess
             }
         }
 
+        /// <summary>
+        /// Fills up the ingredients database
+        /// </summary>
+        /// <param name="list"></param>
         public void FillUpDatabase(List<string> list)
         {
             if (GetAllIngredients().Count == 0)
