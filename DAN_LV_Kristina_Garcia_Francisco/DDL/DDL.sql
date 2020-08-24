@@ -14,7 +14,7 @@ GO
 CREATE TABLE tblIngredient(
 	IngredientID		INT IDENTITY(1,1) PRIMARY KEY 	NOT NULL,
 	IngredientName		NVARCHAR (40)					NOT NULL,
-	IngredientPrice		NVARCHAR(20)					NOT NULL,
+	IngredientPrice		NVARCHAR(20),
 );
 
 CREATE TABLE tblPizza(

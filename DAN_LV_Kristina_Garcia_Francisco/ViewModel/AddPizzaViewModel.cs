@@ -284,6 +284,10 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
             {
                 addPizzaWindow.Close();
             }
+            else
+            {
+                return;
+            }
 
             try
             {
