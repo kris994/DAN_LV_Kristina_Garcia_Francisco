@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PizzaPanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblIngredient">
+          <Key>
+            <PropertyRef Name="IngredientID" />
+          </Key>
+          <Property Name="IngredientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IngredientName" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPizza">
+          <Key>
+            <PropertyRef Name="PizzaID" />
+          </Key>
+          <Property Name="PizzaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PizzaSize" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPizzaIngredient">
+          <Key>
+            <PropertyRef Name="PizzaIngredientID" />
+          </Key>
+          <Property Name="PizzaIngredientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PizzaID" Type="int" Nullable="false" />
+          <Property Name="IngredientID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblPizzaI__Ingre__52593CB8">
+          <End Role="tblIngredient" Type="Self.tblIngredient" Multiplicity="1" />
+          <End Role="tblPizzaIngredient" Type="Self.tblPizzaIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Principal>
+            <Dependent Role="tblPizzaIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPizzaI__Pizza__5165187F">
+          <End Role="tblPizza" Type="Self.tblPizza" Multiplicity="1" />
+          <End Role="tblPizzaIngredient" Type="Self.tblPizzaIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPizza">
+              <PropertyRef Name="PizzaID" />
+            </Principal>
+            <Dependent Role="tblPizzaIngredient">
+              <PropertyRef Name="PizzaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzaPanDBModelStoreContainer">
+          <EntitySet Name="tblIngredient" EntityType="Self.tblIngredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPizza" EntityType="Self.tblPizza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPizzaIngredient" EntityType="Self.tblPizzaIngredient" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblPizzaI__Ingre__52593CB8" Association="Self.FK__tblPizzaI__Ingre__52593CB8">
+            <End Role="tblIngredient" EntitySet="tblIngredient" />
+            <End Role="tblPizzaIngredient" EntitySet="tblPizzaIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPizzaI__Pizza__5165187F" Association="Self.FK__tblPizzaI__Pizza__5165187F">
+            <End Role="tblPizza" EntitySet="tblPizza" />
+            <End Role="tblPizzaIngredient" EntitySet="tblPizzaIngredient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzaPanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblIngredient">
+          <Key>
+            <PropertyRef Name="IngredientID" />
+          </Key>
+          <Property Name="IngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IngredientName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblPizzaIngredients" Relationship="Self.FK__tblPizzaI__Ingre__52593CB8" FromRole="tblIngredient" ToRole="tblPizzaIngredient" />
+        </EntityType>
+        <EntityType Name="tblPizza">
+          <Key>
+            <PropertyRef Name="PizzaID" />
+          </Key>
+          <Property Name="PizzaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PizzaSize" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblPizzaIngredients" Relationship="Self.FK__tblPizzaI__Pizza__5165187F" FromRole="tblPizza" ToRole="tblPizzaIngredient" />
+        </EntityType>
+        <EntityType Name="tblPizzaIngredient">
+          <Key>
+            <PropertyRef Name="PizzaIngredientID" />
+          </Key>
+          <Property Name="PizzaIngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PizzaID" Type="Int32" Nullable="false" />
+          <Property Name="IngredientID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblIngredient" Relationship="Self.FK__tblPizzaI__Ingre__52593CB8" FromRole="tblPizzaIngredient" ToRole="tblIngredient" />
+          <NavigationProperty Name="tblPizza" Relationship="Self.FK__tblPizzaI__Pizza__5165187F" FromRole="tblPizzaIngredient" ToRole="tblPizza" />
+        </EntityType>
+        <Association Name="FK__tblPizzaI__Ingre__52593CB8">
+          <End Role="tblIngredient" Type="Self.tblIngredient" Multiplicity="1" />
+          <End Role="tblPizzaIngredient" Type="Self.tblPizzaIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Principal>
+            <Dependent Role="tblPizzaIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPizzaI__Pizza__5165187F">
+          <End Role="tblPizza" Type="Self.tblPizza" Multiplicity="1" />
+          <End Role="tblPizzaIngredient" Type="Self.tblPizzaIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPizza">
+              <PropertyRef Name="PizzaID" />
+            </Principal>
+            <Dependent Role="tblPizzaIngredient">
+              <PropertyRef Name="PizzaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzaPanDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblIngredients" EntityType="Self.tblIngredient" />
+          <EntitySet Name="tblPizzas" EntityType="Self.tblPizza" />
+          <EntitySet Name="tblPizzaIngredients" EntityType="Self.tblPizzaIngredient" />
+          <AssociationSet Name="FK__tblPizzaI__Ingre__52593CB8" Association="Self.FK__tblPizzaI__Ingre__52593CB8">
+            <End Role="tblIngredient" EntitySet="tblIngredients" />
+            <End Role="tblPizzaIngredient" EntitySet="tblPizzaIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPizzaI__Pizza__5165187F" Association="Self.FK__tblPizzaI__Pizza__5165187F">
+            <End Role="tblPizza" EntitySet="tblPizzas" />
+            <End Role="tblPizzaIngredient" EntitySet="tblPizzaIngredients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzaPanDBModelStoreContainer" CdmEntityContainer="PizzaPanDBEntities">
+          <EntitySetMapping Name="tblIngredients">
+            <EntityTypeMapping TypeName="PizzaPanDBModel.tblIngredient">
+              <MappingFragment StoreEntitySet="tblIngredient">
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+                <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPizzas">
+            <EntityTypeMapping TypeName="PizzaPanDBModel.tblPizza">
+              <MappingFragment StoreEntitySet="tblPizza">
+                <ScalarProperty Name="PizzaID" ColumnName="PizzaID" />
+                <ScalarProperty Name="PizzaSize" ColumnName="PizzaSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPizzaIngredients">
+            <EntityTypeMapping TypeName="PizzaPanDBModel.tblPizzaIngredient">
+              <MappingFragment StoreEntitySet="tblPizzaIngredient">
+                <ScalarProperty Name="PizzaIngredientID" ColumnName="PizzaIngredientID" />
+                <ScalarProperty Name="PizzaID" ColumnName="PizzaID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
