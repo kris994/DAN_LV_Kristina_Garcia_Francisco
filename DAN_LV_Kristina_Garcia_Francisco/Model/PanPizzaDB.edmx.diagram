@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="406147945f7442f59a21cf0bdda2e668" Name="Diagram1">
-        <EntityTypeShape EntityType="PizzaPanDBModel.tblIngredient" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="0d6f4f9235f441809f7780a6f598c494" Name="Diagram1">
+        <EntityTypeShape EntityType="PizzaPanDBModel.tblIngredient" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaPanDBModel.tblPizza" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaPanDBModel.tblPizzaIngredient" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="PizzaPanDBModel.FK__tblPizzaI__Ingre__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaPanDBModel.FK__tblPizzaI__Pizza__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzaPanDBModel.FK__tblPizzaI__Ingre__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzaPanDBModel.FK__tblPizzaI__Pizza__06CD04F7" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

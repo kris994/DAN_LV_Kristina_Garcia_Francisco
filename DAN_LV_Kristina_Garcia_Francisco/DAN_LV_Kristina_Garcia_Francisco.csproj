@@ -76,7 +76,31 @@
     <Compile Include="DataAccess\IngredientData.cs" />
     <Compile Include="DataAccess\PizzaData.cs" />
     <Compile Include="DataAccess\PizzaIngredientData.cs" />
+    <Compile Include="Model\PanPizzaDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PanPizzaDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PanPizzaDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PanPizzaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PanPizzaDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PanPizzaDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Pizza.cs" />
+    <Compile Include="Model\tblIngredient.cs">
+      <DependentUpon>PanPizzaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblPizza.cs">
+      <DependentUpon>PanPizzaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblPizzaIngredient.cs">
+      <DependentUpon>PanPizzaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AddPizzaViewModel.cs" />
     <Compile Include="ViewModel\AllPizzaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -108,30 +132,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\PizzaPan.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PizzaPan.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PizzaPan.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PizzaPan.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PizzaPan.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PizzaPan.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblIngredient.cs">
-      <DependentUpon>PizzaPan.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblPizza.cs">
-      <DependentUpon>PizzaPan.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblPizzaIngredient.cs">
-      <DependentUpon>PizzaPan.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -149,12 +149,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\PizzaPan.edmx">
+    <EntityDeploy Include="Model\PanPizzaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PizzaPan.Designer.cs</LastGenOutput>
+      <LastGenOutput>PanPizzaDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\PizzaPan.edmx.diagram">
-      <DependentUpon>PizzaPan.edmx</DependentUpon>
+    <None Include="Model\PanPizzaDB.edmx.diagram">
+      <DependentUpon>PanPizzaDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -169,15 +169,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DDL\DDL.sql" />
-    <Content Include="Model\PizzaPan.Context.tt">
+    <Content Include="Model\PanPizzaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PizzaPan.Context.cs</LastGenOutput>
-      <DependentUpon>PizzaPan.edmx</DependentUpon>
+      <DependentUpon>PanPizzaDB.edmx</DependentUpon>
+      <LastGenOutput>PanPizzaDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\PizzaPan.tt">
+    <Content Include="Model\PanPizzaDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PizzaPan.edmx</DependentUpon>
-      <LastGenOutput>PizzaPan.cs</LastGenOutput>
+      <DependentUpon>PanPizzaDB.edmx</DependentUpon>
+      <LastGenOutput>PanPizzaDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup />

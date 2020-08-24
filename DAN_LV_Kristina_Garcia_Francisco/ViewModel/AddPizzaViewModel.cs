@@ -26,6 +26,11 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
         /// Ingredient List
         /// </summary>
         private readonly List<string> ingredientList = new List<string> { "Salama", "Ham", "Kulen", "Ketchup", "Majo", "Chilli Papper", "Olive", "Oregano", "Sesame", "Cheese" };
+
+        /// <summary>
+        /// Price List
+        /// </summary>
+        private readonly List<string> priceList = new List<string> { "50.00", "60.00", "50.00", "10.00", "10.00", "10.00", "80.00", "10.00", "10.00", "80.00" };
         #endregion
 
         #region Constructor
@@ -119,46 +124,27 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
             try
             {
                 CanEdit = false;
-                string ingredientName = " ";
                 double sum = 0;
 
-                for (int i = 0; i < FillList().Count; i++)
+                ingredientData.FillUpDatabase(ingredientList, priceList);
+                List<tblIngredient> ingredientsList = ingredientData.GetAllIngredients().ToList();
+
+                for (int i = 0; i < ingredientsList.Count; i++)
                 {
-                    ingredientName = FillList()[i];
-                    switch (ingredientName)
+                    for (int j = 0; j < FillList().Count; j++)
                     {
-                        case "Salama":
-                            sum += 50.00;
+                        if (ingredientsList[i].IngredientName == FillList()[j])
+                        {
+                            sum += double.Parse(ingredientsList[i].IngredientPrice);
+                            tblPizzaIngredient item = new tblPizzaIngredient()
+                            {
+                                PizzaID = Pizza.PizzaID,
+                                IngredientID = ingredientsList[i].IngredientID
+                            };
+
+                            pizzaIngredientData.AddPizzaIngredient(item);
                             break;
-                        case "Ham":
-                            sum += 60.00;
-                            break;
-                        case "Kulen":
-                            sum += 50.00;
-                            break;
-                        case "Ketchup":
-                            sum += 10.00;
-                            break;
-                        case "Majo":
-                            sum += 10.00;
-                            break;
-                        case "Chilli Papper":
-                            sum += 10.00;
-                            break;
-                        case "Olive":
-                            sum += 80.00;
-                            break;
-                        case "Oregano":
-                            sum += 10.00;
-                            break;
-                        case "Sesame":
-                            sum += 10.00;
-                            break;
-                        case "Cheese":
-                            sum += 80.00;
-                            break;
-                        default:
-                            break;
+                        }
                     }
                 }
 
@@ -224,7 +210,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
         {
             try
             {
-                ingredientData.FillUpDatabase(ingredientList);
+                ingredientData.FillUpDatabase(ingredientList, priceList);
                 List<tblIngredient> ingredientsList = ingredientData.GetAllIngredients().ToList();
 
                 pizzaData.AddPizza(Pizza);

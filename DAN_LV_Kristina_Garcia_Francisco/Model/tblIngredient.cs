@@ -22,6 +22,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.Model
     
         public int IngredientID { get; set; }
         public string IngredientName { get; set; }
+        public string IngredientPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPizzaIngredient> tblPizzaIngredients { get; set; }

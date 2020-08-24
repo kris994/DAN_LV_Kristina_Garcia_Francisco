@@ -46,7 +46,8 @@ namespace DAN_LV_Kristina_Garcia_Francisco.DataAccess
                 {
                     tblIngredient newIngredient = new tblIngredient
                     {
-                        IngredientName = ingredient.IngredientName
+                        IngredientName = ingredient.IngredientName,
+                        IngredientPrice = ingredient.IngredientPrice,
                     };
 
                     context.tblIngredients.Add(newIngredient);
@@ -67,7 +68,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.DataAccess
         /// Fills up the ingredients database
         /// </summary>
         /// <param name="list"></param>
-        public void FillUpDatabase(List<string> list)
+        public void FillUpDatabase(List<string> list, List<string> price)
         {
             if (GetAllIngredients().Count == 0)
             {
@@ -76,6 +77,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.DataAccess
                     tblIngredient ing = new tblIngredient
                     {
                         IngredientName = list[i],
+                        IngredientPrice = price[i]
                     };
 
                     AddIngredient(ing);

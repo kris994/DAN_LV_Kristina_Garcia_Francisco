@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="500"
-             d:DesignWidth="550"
+             d:DesignWidth="700"
              WindowStyle="None">
     <Grid>
-        <Grid MinWidth="550"
+        <Grid MinWidth="700"
               MinHeight="500"
               Background="White">
             <Grid.RowDefinitions>
@@ -72,7 +72,7 @@
                       IsReadOnly="True"
                       FontSize="14"
                       Height="auto"
-                      Width="500"
+                      Width="650"
                       Margin="30 20 30 0"
                       Background="White"
                       AlternatingRowBackground="LightYellow"
@@ -107,6 +107,16 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
+                        <DataGridTextColumn Header="Total Price"
+                                        Width="150"
+                                        Binding="{Binding TotalPrice}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping"
+                                        Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
