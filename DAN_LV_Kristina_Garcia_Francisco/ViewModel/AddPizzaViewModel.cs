@@ -34,6 +34,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
         {
             pizza = new tblPizza();
             addPizzaWindow = addPizzaOpen;
+            CanEdit = true;
         }
         #endregion
 
@@ -54,9 +55,149 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
                 OnPropertyChanged("Pizza");
             }
         }
+
+        /// <summary>
+        /// TotalPriceLabel 
+        /// </summary>
+        private string totalPriceLabel;
+        public string TotalPriceLabel
+        {
+            get
+            {
+                return totalPriceLabel;
+            }
+            set
+            {
+                totalPriceLabel = value;
+                OnPropertyChanged("TotalPriceLabel");
+            }
+        }
+
+        /// <summary>
+        /// IsEnabled CanEdit
+        /// </summary>
+        private bool canEdit;
+        public bool CanEdit
+        {
+            get
+            {
+                return canEdit;
+            }
+            set
+            {
+                canEdit = value;
+                OnPropertyChanged("CanEdit");
+            }
+        }
         #endregion
 
         #region Commands
+        /// <summary>
+        /// Total Price button
+        /// </summary>
+        private ICommand calculateAmount;
+        public ICommand CalculateAmount
+        {
+            get
+            {
+                if (calculateAmount == null)
+                {
+                    calculateAmount = new RelayCommand(param => CalculateAmountExecute(), param => CanCalculateAmountExecute());
+                }
+                return calculateAmount;
+            }
+        }
+
+        /// <summary>
+        /// Method for adding new Ingredients
+        /// </summary>
+        private void CalculateAmountExecute()
+        {
+            try
+            {
+                CanEdit = false;
+                string ingredientName = " ";
+                double sum = 0;
+
+                for (int i = 0; i < FillList().Count; i++)
+                {
+                    ingredientName = FillList()[i];
+                    switch (ingredientName)
+                    {
+                        case "Salama":
+                            sum += 50.00;
+                            break;
+                        case "Ham":
+                            sum += 60.00;
+                            break;
+                        case "Kulen":
+                            sum += 50.00;
+                            break;
+                        case "Ketchup":
+                            sum += 10.00;
+                            break;
+                        case "Majo":
+                            sum += 10.00;
+                            break;
+                        case "Chilli Papper":
+                            sum += 10.00;
+                            break;
+                        case "Olive":
+                            sum += 80.00;
+                            break;
+                        case "Oregano":
+                            sum += 10.00;
+                            break;
+                        case "Sesame":
+                            sum += 10.00;
+                            break;
+                        case "Cheese":
+                            sum += 80.00;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                switch (Pizza.PizzaSize)
+                {
+                    case "Big":
+                        sum += 799.99;
+                        break;
+                    case "Small":
+                        sum += 199.99;
+                        break;
+                    case "Medium":
+                        sum += 499.99;
+                        break;
+                    default:
+                        break;
+                }
+
+                TotalPriceLabel = sum.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Checks if it is possible to click on the button
+        /// </summary>
+        /// <returns></returns>
+        private bool CanCalculateAmountExecute()
+        {
+            if (!String.IsNullOrEmpty(Pizza.PizzaSize) && FillList().Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Save button
         /// </summary>
@@ -71,54 +212,6 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
                 }
                 return save;
             }
-        }
-
-        public List<string> FillList()
-        {
-            List<string> ingredientName = new List<string>();
-
-            if (addPizzaWindow.cbSalama.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbSalama.Content.ToString());
-            }
-            if (addPizzaWindow.cbHam.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbHam.Content.ToString());
-            }
-            if (addPizzaWindow.cbKulen.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbKulen.Content.ToString());
-            }
-            if (addPizzaWindow.cbKetchup.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbKetchup.Content.ToString());
-            }
-            if (addPizzaWindow.cbMajo.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbMajo.Content.ToString());
-            }
-            if (addPizzaWindow.cbChiliP.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbChiliP.Content.ToString());
-            }
-            if (addPizzaWindow.cbOlive.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbOlive.Content.ToString());
-            }
-            if (addPizzaWindow.cbOregano.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbOregano.Content.ToString());
-            }
-            if (addPizzaWindow.cbSesame.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbSesame.Content.ToString());
-            }
-            if (addPizzaWindow.cbCheese.IsChecked == true)
-            {
-                ingredientName.Add(addPizzaWindow.cbCheese.Content.ToString());
-            }
-
-            return ingredientName;
         }
 
         /// <summary>
@@ -165,7 +258,7 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
         /// <returns></returns>
         private bool CanSaveExecute()
         {
-            if (!String.IsNullOrEmpty(Pizza.PizzaSize) && FillList().Count != 0)
+            if (!String.IsNullOrEmpty(Pizza.PizzaSize) && FillList().Count != 0 && TotalPriceLabel != null)
             {
                 return true;
             }
@@ -220,6 +313,58 @@ namespace DAN_LV_Kristina_Garcia_Francisco.ViewModel
         private bool CanCloseExecute()
         {
             return true;
+        }
+
+        /// <summary>
+        /// List of items from the checkbox
+        /// </summary>
+        /// <returns></returns>
+        public List<string> FillList()
+        {
+            List<string> ingredientName = new List<string>();
+
+            if (addPizzaWindow.cbSalama.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbSalama.Content.ToString());
+            }
+            if (addPizzaWindow.cbHam.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbHam.Content.ToString());
+            }
+            if (addPizzaWindow.cbKulen.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbKulen.Content.ToString());
+            }
+            if (addPizzaWindow.cbKetchup.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbKetchup.Content.ToString());
+            }
+            if (addPizzaWindow.cbMajo.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbMajo.Content.ToString());
+            }
+            if (addPizzaWindow.cbChiliP.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbChiliP.Content.ToString());
+            }
+            if (addPizzaWindow.cbOlive.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbOlive.Content.ToString());
+            }
+            if (addPizzaWindow.cbOregano.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbOregano.Content.ToString());
+            }
+            if (addPizzaWindow.cbSesame.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbSesame.Content.ToString());
+            }
+            if (addPizzaWindow.cbCheese.IsChecked == true)
+            {
+                ingredientName.Add(addPizzaWindow.cbCheese.Content.ToString());
+            }
+
+            return ingredientName;
         }
         #endregion
     }

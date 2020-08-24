@@ -31,8 +31,8 @@ namespace DAN_LV_Kristina_Garcia_Francisco.Model
                             break;
                         }
                     }
-                    
-                }           
+
+                }
 
                 return ingredientList;
             }

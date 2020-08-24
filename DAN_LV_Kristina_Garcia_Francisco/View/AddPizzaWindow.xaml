@@ -71,6 +71,7 @@
                                       Margin="0,0,10,0"
                                       VerticalAlignment="Top"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                      IsEnabled="{Binding CanEdit}"
                                       SelectedValuePath="Content">
                         <ComboBoxItem Content="Small"></ComboBoxItem>
                         <ComboBoxItem Content="Medium"></ComboBoxItem>
@@ -85,6 +86,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Salama"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbSalama" Margin="181,0,163,55"/>
                     <CheckBox   
                                 x:Name="cbHam"
@@ -93,6 +95,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Ham"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbSalama" Margin="86,0,258,55"/>
                     <CheckBox
                                 x:Name="cbKulen"
@@ -101,6 +104,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Kulen"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbKulen" Margin="281,0,63,55"/>
                     <CheckBox 
                                 x:Name="cbKetchup"
@@ -109,6 +113,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Ketchup"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbKetchup" Margin="181,45,163,10"/>
                     <CheckBox
                                 x:Name="cbMajo"
@@ -117,6 +122,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Majo"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbMajo" Margin="86,45,258,10"/>
                     <CheckBox
                                 x:Name="cbChiliP"
@@ -125,6 +131,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Chilli Papper"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbKulen" Margin="281,45,63,10"/>
                     <CheckBox 
                                 x:Name="cbOlive"
@@ -133,6 +140,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Olive"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbOlive" Margin="181,90,163,-35"/>
                     <CheckBox
                                 x:Name="cbOregano"
@@ -141,6 +149,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Oregano"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbOregano" Margin="86,90,258,-35"/>
                     <CheckBox
                                 x:Name="cbSesame"
@@ -149,6 +158,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Sesame"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbSesame" Margin="281,90,63,-35"/>
                     <CheckBox
                                 x:Name="cbCheese"
@@ -157,6 +167,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="45"
                                 Content="Cheese"
+                                IsEnabled="{Binding CanEdit}"
                                 AutomationProperties.Name="cbChe" Margin="181,135,163,-80"/>
                 </Grid>
                 <Grid Grid.Row="4">
@@ -169,7 +180,7 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonAssist.CornerRadius="20"
                             ToolTip="Napusti dijalog"
-                            Margin="72,130,50,49"
+                            Margin="82,169,40,10"
                             Width="100"
                             Height="35"
                             Foreground="White"
@@ -178,18 +189,18 @@
                             BorderBrush="{x:Null}">Close
                     </Button>
                     <TextBlock Grid.Column="0"
-                               Margin="89,95,20,0"
+                               Margin="18,-187,131,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
                                FontSize="14"
                                FontStyle="Italic"
-                               Foreground="Red">* - Obavezno polje</TextBlock>
+                               Foreground="Red">* - Required</TextBlock>
                     <Button Grid.Column="1"
                             x:Name="btnSave"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="20"
                             ToolTip="Save"
-                            Margin="57,130,65,49"
+                            Margin="60,169,62,10"
                             Width="100"
                             Height="35"
                             Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}"
@@ -197,6 +208,34 @@
                             Foreground="White"
                             BorderBrush="{x:Null}">Save
                     </Button>
+                    <Button
+                            x:Name="btnCalc"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="15 0 0 15"
+                            ToolTip="Calculate the total amount"
+                            Margin="82,116,211,63"
+                            Height="35"
+                            Command="{Binding CalculateAmount, UpdateSourceTrigger=PropertyChanged}"
+                            Foreground="White"
+                            BorderBrush="{x:Null}" Grid.ColumnSpan="2">Calculate amount
+                    </Button>
+                    <Border BorderBrush="Gray"
+                            BorderThickness="3" 
+                            Grid.Column="1" 
+                            HorizontalAlignment="Left" 
+                            Height="35" 
+                            Margin="11,116,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="149">
+                        <Label 
+                            Content="{Binding TotalPriceLabel}" 
+                            Margin="3,-3,7,-3"
+                            FontSize="16"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            />
+                    </Border>
                 </Grid>
             </Grid>
         </Border>
